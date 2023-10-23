@@ -73,7 +73,7 @@ public class Library implements IPlaylist {
         final String picturePath = datas.remove(0);
         final List<Music> newSongs = new ArrayList<>();
 
-        for (String song : datas) {
+        for (final String song : datas) {
             final String[] values = song.split(",");
             newSongs.add(new Song(values[0], values[1], values[2], values[3]));
         }

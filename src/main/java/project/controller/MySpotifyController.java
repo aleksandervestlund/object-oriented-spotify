@@ -57,7 +57,6 @@ public class MySpotifyController {
 
     private Library library;
 
-    // Definerer ikke alle elementer som finnes i JavaFX-filen
     @FXML
     private Button buttonSongs;
     @FXML
@@ -80,8 +79,6 @@ public class MySpotifyController {
     private Label labelSongs;
     @FXML
     private ListView<Music> listViewPlaylists;
-
-    // Brukes ikke i denne filen
     @FXML
     private Button buttonOpen;
     @FXML
@@ -138,7 +135,7 @@ public class MySpotifyController {
         }
 
         tmpAlleSanger = new ArrayList<>(alleSanger);
-        List<Music> theHangoverCureSanger = new ArrayList<>();
+        final List<Music> theHangoverCureSanger = new ArrayList<>();
         for (int j = 0; j < 10; j++) {
             theHangoverCureSanger.add(tmpAlleSanger.remove(random.nextInt(tmpAlleSanger.size())));
         }
@@ -266,7 +263,7 @@ public class MySpotifyController {
             this.checkAddSong();
 
             this.setOutputArea("Selected playlist '" + this.selectedPlaylist.getName() + "'.");
-        } catch (Exception e) {
+        } catch (final Exception e) {
             this.setOutputArea("Select a playlist.");
         }
     }
@@ -280,7 +277,7 @@ public class MySpotifyController {
             this.checkAddSong();
 
             this.setOutputArea("Selected song '" + this.selectedSong.getName() + "'.");
-        } catch (Exception e) {
+        } catch (final Exception e) {
             this.setOutputArea("Select a song.");
         }
     }
@@ -334,7 +331,7 @@ public class MySpotifyController {
                 this.updatePlaylistView();
 
                 this.setOutputArea("Deleted playlist '" + tmpSelectedPlaylist.getName() + "'.");
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 this.setOutputArea("Playlist already deleted.");
             }
         } else {
@@ -357,7 +354,7 @@ public class MySpotifyController {
 
             String name = tmpSelectedPlaylist.getName();
             this.setOutputArea("Exported playlist '" + name + "' as '" + name + ".txt'.");
-        } catch (Exception e) {
+        } catch (final Exception e) {
             this.setOutputArea("Select a playlist to be exported.");
         }
     }
@@ -374,7 +371,7 @@ public class MySpotifyController {
 
                 this.setOutputArea("Added song '" + this.selectedSong.getName() + "' to playlist '"
                         + this.selectedPlaylist.getName() + "'.");
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 this.setOutputArea("Song already in playlist.");
             }
         } else {
@@ -420,7 +417,7 @@ public class MySpotifyController {
                 this.updatePlaylistView();
 
                 this.setOutputArea("Renamed playlist '" + oldName + "' as '" + newName + "'.");
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 this.setOutputArea("Invalid playlist name.");
             }
         } else {
@@ -473,7 +470,7 @@ public class MySpotifyController {
             this.updatePlaylistView();
 
             this.setOutputArea("Created new playlist '" + name + "'.");
-        } catch (Exception e) {
+        } catch (final Exception e) {
             this.setOutputArea("Invalid playlist name.");
         }
     }
@@ -491,8 +488,13 @@ public class MySpotifyController {
             this.updatePlaylistView();
 
             this.setOutputArea("Playlist '" + name + "' imported from '" + name + ".txt'.");
-        } catch (Exception e) {
+        } catch (final Exception e) {
             this.setOutputArea("Invalid playlist name.");
         }
+    }
+
+    public static void main(final String[] args) {
+        MySpotifyController mySpotifyController = new MySpotifyController();
+        mySpotifyController.initialize();
     }
 }

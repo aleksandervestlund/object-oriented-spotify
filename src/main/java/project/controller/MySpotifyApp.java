@@ -14,7 +14,7 @@ public class MySpotifyApp extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Application.launch(args);
     }
 }

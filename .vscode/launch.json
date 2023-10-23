@@ -2,6 +2,14 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MySpotifyController",
+            "request": "launch",
+            "mainClass": "project.controller.MySpotifyController",
+            "projectName": "tdt4100_v2023_prosjekt_boilerplate",
+            "vmArgs": "--module-path /Users/aleksandervestlund/Desktop/KOMTEK/Semester\\ 2/TDT4100/TDT4100-prosjekt-alekstv/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
             "name": "MySpotifyApp",
             "request": "launch",
             "mainClass": "project.controller.MySpotifyApp",

@@ -133,12 +133,14 @@ public class PlaylistTest {
 
         try {
             this.p4.exportPlaylist();
-        } catch (Exception e) {
+        } catch (final Exception e) {
         }
 
-        File file =
+        final File file =
                 new File("src/main/resources/project/view/playlists/" + this.p4.getName() + ".txt");
         assertTrue(file.exists());
+
+        // Sletter filen etterpå
         file.delete();
         assertFalse(file.exists());
     }

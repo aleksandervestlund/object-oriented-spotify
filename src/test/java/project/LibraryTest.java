@@ -94,13 +94,14 @@ public class LibraryTest {
             this.p1.exportPlaylist();
             this.l1.importPlaylist(this.p1.getName());
 
+            // Sletter filen etterpå
             new File("src/main/resources/project/view/playlists/" + this.p1.getName() + ".txt")
                     .delete();
-        } catch (Exception e) {
+        } catch (final Exception e) {
         }
 
         assertEquals(1, this.l1.getPlaylist().size());
-        Playlist p4 = (Playlist) this.l1.getPlaylist().get(0);
+        final Playlist p4 = (Playlist) this.l1.getPlaylist().get(0);
 
         assertEquals(this.p1.getName(), p4.getName());
         assertEquals(this.p1.getPicturePath(), p4.getPicturePath());
