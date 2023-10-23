@@ -1,0 +1,109 @@
+@startuml Spotify
+
+package java {
+    package model {
+        abstract Music {
+            - String name
+            - String picturePath
+
+            + {abstract} String soutMusic()
+            + {static} boolean validateString(String string)
+            + void setName(String name)
+            + String getName()
+            + void setPicturePath(String picturePath)
+            + String getPicturePath()
+        }
+
+        interface IPlaylist {
+            + List<Music> getPlaylist()
+        }
+
+        class Song extends Music {
+            + {static} final String DEFAULTSONGURL
+            - String artist
+            - String album
+
+            + void setArtist(String artist)
+            + String getArtist()
+            + void setAlbum(String album)
+            + String getAlbum()
+        }
+
+        class Playlist extends Music implements IPlaylist {
+            + {static} final String DEFAULTPLAYLISTURL
+
+            + void addSong(Music song)
+            + void removeSong(Music song)
+            + void exportPlaylist()
+            - void sortDefault()
+        }
+
+        class Library implements IPlaylist {
+            + Playlist getSongsLibrary()
+            + void addPlaylist(Music playlist)
+            + void removePlaylist(Music playlist)
+            + void importPlaylist(String filename)
+            - void sortDefault()
+        }
+    }
+
+    package controller {
+        abstract Application
+
+        class MySpotifyApp extends Application {
+            + void start(Stage primaryStage)
+        }
+
+        class MySpotifyController {
+            - Library library
+            - Playlist selectedPlaylist
+            - Music selectedSong
+
+            + void initialize()
+            + void updateListView(IPlaylist iPlaylist, ListView<Music> listView)
+            + void updatePlaylistView()
+            + void setOutputArea(text)
+            + void checkNameButtons()
+            + void checkAddSong()
+            + void onButtonSelectPlaylist()
+            + void onButtonSelectSong()
+            + void onButtonSongs()
+            + void onButtonOpen()
+            + void onButtonDelete()
+            + void onButtonExport()
+            + void onButtonAdd()
+            + void onButtonRename()
+            + void onButtonChangePicture()
+            + void onButtonCreate()
+            + void onButtonImport()
+        }
+    }
+}
+
+package resources {
+    package view {
+        package coverart {}
+        package playlists {}
+        circle "MySpotifyApp" as fxml
+    }
+}
+
+hide Application methods
+hide Application fields
+hide MySpotifyApp fields
+hide Library fields
+hide IPlaylist fields
+
+java -right[hidden]- resources
+fxml -down[hidden]- coverart
+coverart -down[hidden]- playlists
+Song -right[hidden]- Playlist
+Playlist -right[hidden]- Library
+Playlist -up[hidden]- IPlaylist
+Music -right[hidden]- IPlaylist
+
+Playlist -- "songs: *" Music
+Library -- "playlists: *" Music
+Library -- "songsLibrary: 1" Playlist
+
+@enduml
