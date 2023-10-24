@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class MySpotifyApp extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Brosjan Music");
+        primaryStage.setTitle("Spotify");
         primaryStage.setScene(new Scene(
                 FXMLLoader.load(this.getClass().getResource("/project/view/MySpotifyApp.fxml"))));
         primaryStage.show();

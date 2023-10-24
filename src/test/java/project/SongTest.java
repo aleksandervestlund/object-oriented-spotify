@@ -9,9 +9,9 @@ import project.model.Music;
 import project.model.Song;
 
 public class SongTest {
-    Song s1;
-    Song s2;
-    Song s3;
+    private Song s1;
+    private Song s2;
+    private Song s3;
 
     @BeforeEach
     public void setUp() {

@@ -14,14 +14,14 @@ import project.model.Playlist;
 import project.model.Song;
 
 public class PlaylistTest {
-    Playlist p1;
-    Playlist p2;
-    Playlist p3;
-    Playlist p4;
+    private Playlist p1;
+    private Playlist p2;
+    private Playlist p3;
+    private Playlist p4;
 
-    Song s1;
-    Song s2;
-    Song s3;
+    private Song s1;
+    private Song s2;
+    private Song s3;
 
     @BeforeEach
     public void setUp() {

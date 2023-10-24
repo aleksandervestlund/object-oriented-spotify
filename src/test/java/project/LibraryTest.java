@@ -13,19 +13,19 @@ import project.model.Playlist;
 import project.model.Song;
 
 public class LibraryTest {
-    Library l1;
+    private Library l1;
 
-    Playlist p1;
-    Playlist p2;
-    Playlist p3;
+    private Playlist p1;
+    private Playlist p2;
+    private Playlist p3;
 
-    Song s1;
-    Song s2;
+    private Song s1;
+    // private Song s2;
 
     @BeforeEach
     public void setUp() {
         this.s1 = new Song("My Fault", "Eminem", "The Eminem Show");
-        this.s2 = new Song("Neighbors", "forYourEyesOnly.jpg", "J. Cole", "4 Your Eyez Only");
+        // this.s2 = new Song("Neighbors", "forYourEyesOnly.jpg", "J. Cole", "4 Your Eyez Only");
 
         this.p1 = new Playlist("Sånt skjer");
         this.p2 = new Playlist("Know 'Em All!");
