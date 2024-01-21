@@ -101,7 +101,7 @@ public class LibraryTest {
         }
 
         assertEquals(1, this.l1.getPlaylist().size());
-        final Playlist p4 = (Playlist) this.l1.getPlaylist().get(0);
+        Playlist p4 = (Playlist) this.l1.getPlaylist().get(0);
 
         assertEquals(this.p1.getName(), p4.getName());
         assertEquals(this.p1.getPicturePath(), p4.getPicturePath());

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -64,17 +65,17 @@ public class Library implements IPlaylist {
      * @throws IOException Dersom spillelisten aldri har blitt eksportert
      */
     public void importPlaylist(final String filename) throws IOException {
-        final Scanner myReader = new Scanner(
+        Scanner myReader = new Scanner(
                 new File("src/main/resources/project/view/playlists/" + filename + ".txt"));
-        final List<String> datas = new ArrayList<>(Arrays.asList(myReader.nextLine().split(";")));
+        List<String> datas = new ArrayList<>(Arrays.asList(myReader.nextLine().split(";")));
         myReader.close();
 
-        final String name = datas.remove(0);
-        final String picturePath = datas.remove(0);
-        final List<Music> newSongs = new ArrayList<>();
+        String name = datas.remove(0);
+        String picturePath = datas.remove(0);
+        Collection<Music> newSongs = new ArrayList<>();
 
         for (final String song : datas) {
-            final String[] values = song.split(",");
+            String[] values = song.split(",");
             newSongs.add(new Song(values[0], values[1], values[2], values[3]));
         }
 
@@ -84,7 +85,7 @@ public class Library implements IPlaylist {
     // Sorterer i stigende rekkefølge; først på spillelistenavn, og deretter på størrelse
     private void sortDefault() {
         this.playlists.sort((s1, s2) -> {
-            final int diff = s1.getName().compareToIgnoreCase(s2.getName());
+            int diff = s1.getName().compareToIgnoreCase(s2.getName());
 
             if (diff != 0)
                 return diff;

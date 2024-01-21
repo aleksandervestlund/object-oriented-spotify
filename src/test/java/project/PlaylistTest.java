@@ -136,7 +136,7 @@ public class PlaylistTest {
         } catch (final Exception e) {
         }
 
-        final File file =
+        File file =
                 new File("src/main/resources/project/view/playlists/" + this.p4.getName() + ".txt");
         assertTrue(file.exists());
 

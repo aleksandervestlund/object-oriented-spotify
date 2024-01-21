@@ -80,7 +80,7 @@ public abstract class Music {
             this.picturePath = picturePath;
         } else if (this instanceof Playlist) {
             this.picturePath = Playlist.DEFAULTPLAYLISTURL;
-        } else if (this instanceof Song) {
+        } else if (this instanceof Song) { // Kunne vært else
             this.picturePath = Song.DEFAULTSONGURL;
         }
     }

@@ -110,11 +110,11 @@ public class Playlist extends Music implements IPlaylist {
      * @throws IOException Hvis filen ikke finnes fra før, så vil aldri kastes her
      */
     public void exportPlaylist() throws IOException {
-        final String filepath = "src/main/resources/project/view/playlists/" + this + ".txt";
-        final File file = new File(filepath);
+        String filepath = "src/main/resources/project/view/playlists/" + this + ".txt";
+        File file = new File(filepath);
         file.createNewFile();
 
-        final FileWriter myWriter = new FileWriter(filepath);
+        FileWriter myWriter = new FileWriter(filepath);
         myWriter.write(this.soutMusic());
         myWriter.close();
     }
@@ -126,7 +126,7 @@ public class Playlist extends Music implements IPlaylist {
     public String soutMusic() {
         String string = this.getName() + ";" + this.getPicturePath();
 
-        for (Music music : this.songs) {
+        for (final Music music : this.songs) {
             string += ";" + music.soutMusic();
         }
 

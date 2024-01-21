@@ -1,7 +1,7 @@
 package project.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -105,37 +105,37 @@ public class MySpotifyController {
         this.library = new Library();
 
         // Sangtitler
-        final List<String> fyeo = Arrays.asList("For Whom the Bell Tolls", "Immortal", "Deja Vu",
+        Collection<String> fyeo = List.of("For Whom the Bell Tolls", "Immortal", "Deja Vu",
                 "Ville Mentality", "She's Mine Pt. 1", "Change", "Neighbors", "Foldin Clothes",
                 "She's Mine Pt. 2", "4 Your Eyez Only");
-        final List<String> aap = Arrays.asList("Enchanted Waterfall", "Pink Dolphin Sunset",
+        Collection<String> aap = List.of("Enchanted Waterfall", "Pink Dolphin Sunset",
                 "Midnight's Interlude", "The Color Violet", "Lavender Sunflower",
                 "Ballad of a Badman", "Lady Of Namek", "Pluto's Last Comet", "'87 Stingray",
                 "Hunt From Mercury", "Last Kiss Of Nebulon");
-        final List<String> m = Arrays.asList("Snoozefest", "My Beloved", "STFU", "Dennis Rodman",
+        Collection<String> m = List.of("Snoozefest", "My Beloved", "STFU", "Dennis Rodman",
                 "i'm thinking about horses", "nobody knows", "A Million Miles", "Wicked",
                 "Rich White Girls", "Strip Club", "White Linen", "Gorgeous",
                 "The Life Of A Troubadour");
 
-        fyeo.forEach(s -> this.library.getSongsLibrary()
-                .addSong(new Song(s, "forYourEyesOnly.jpg", "J. Cole", "4 Your Eyez Only")));
-        aap.forEach(s -> this.library.getSongsLibrary()
-                .addSong(new Song(s, "aloneAtProm.jpg", "Tory Lanez", "Alone At Prom")));
-        m.forEach(s -> this.library.getSongsLibrary()
-                .addSong(new Song(s, "mansionz.jpeg", "mansionz", "Mansionz")));
+        fyeo.forEach(song -> this.library.getSongsLibrary()
+                .addSong(new Song(song, "forYourEyesOnly.jpg", "J. Cole", "4 Your Eyez Only")));
+        aap.forEach(song -> this.library.getSongsLibrary()
+                .addSong(new Song(song, "aloneAtProm.jpg", "Tory Lanez", "Alone At Prom")));
+        m.forEach(song -> this.library.getSongsLibrary()
+                .addSong(new Song(song, "mansionz.jpeg", "mansionz", "Mansionz")));
 
-        final Random random = new Random();
-        final List<Music> alleSanger =
+        Random random = new Random();
+        Collection<Music> alleSanger =
                 new ArrayList<>(this.library.getSongsLibrary().getPlaylist());
-        List<Music> tmpAlleSanger = new ArrayList<>(alleSanger);
 
-        final List<Music> saantSkjerSanger = new ArrayList<>();
+        List<Music> tmpAlleSanger = new ArrayList<>(alleSanger);
+        Collection<Music> saantSkjerSanger = new ArrayList<>();
         for (int j = 0; j < 10; j++) {
             saantSkjerSanger.add(tmpAlleSanger.remove(random.nextInt(tmpAlleSanger.size())));
         }
 
         tmpAlleSanger = new ArrayList<>(alleSanger);
-        final List<Music> theHangoverCureSanger = new ArrayList<>();
+        Collection<Music> theHangoverCureSanger = new ArrayList<>();
         for (int j = 0; j < 10; j++) {
             theHangoverCureSanger.add(tmpAlleSanger.remove(random.nextInt(tmpAlleSanger.size())));
         }
@@ -165,11 +165,11 @@ public class MySpotifyController {
     @FXML
     public void updateListView(final IPlaylist iPlaylist, final ListView<Music> listView) {
         listView.setItems(FXCollections.observableArrayList(iPlaylist.getPlaylist()));
-        listView.setCellFactory((ListView<Music> param) -> new ListCell<>() {
-            final ImageView imageView = new ImageView();
+        listView.setCellFactory((final ListView<Music> param) -> new ListCell<>() {
+            ImageView imageView = new ImageView();
 
             @Override
-            protected void updateItem(Music item, boolean empty) {
+            protected void updateItem(final Music item, final boolean empty) {
                 String text = "";
                 if (empty) {
                     setGraphic(null);
@@ -255,8 +255,7 @@ public class MySpotifyController {
      */
     @FXML
     public void onButtonSelectPlaylist() {
-        final Music tmpSelectedPlaylist =
-                this.listViewPlaylists.getSelectionModel().getSelectedItem();
+        Music tmpSelectedPlaylist = this.listViewPlaylists.getSelectionModel().getSelectedItem();
 
         try {
             this.selectedPlaylist = (Playlist) Objects.requireNonNull(tmpSelectedPlaylist);
@@ -270,7 +269,7 @@ public class MySpotifyController {
 
     @FXML
     public void onButtonSelectSong() {
-        final Music tmpSelectedSong = this.listViewSongs.getSelectionModel().getSelectedItem();
+        Music tmpSelectedSong = this.listViewSongs.getSelectionModel().getSelectedItem();
 
         try {
             this.selectedSong = Objects.requireNonNull(tmpSelectedSong);
@@ -301,10 +300,10 @@ public class MySpotifyController {
      */
     @FXML
     public void onButtonOpen() {
-        final Playlist tmpSelectedPlaylist =
+        Playlist tmpSelectedPlaylist =
                 (Playlist) this.listViewPlaylists.getSelectionModel().getSelectedItem();
 
-        if (!Objects.isNull(tmpSelectedPlaylist)) {
+        if (Objects.nonNull(tmpSelectedPlaylist)) {
             this.labelSongs.setText(tmpSelectedPlaylist.getName());
             this.buttonSongs.setDisable(false);
             this.buttonRemove.setDisable(false);
@@ -322,10 +321,10 @@ public class MySpotifyController {
      */
     @FXML
     public void onButtonDelete() {
-        final Playlist tmpSelectedPlaylist =
+        Playlist tmpSelectedPlaylist =
                 (Playlist) this.listViewPlaylists.getSelectionModel().getSelectedItem();
 
-        if (!Objects.isNull(tmpSelectedPlaylist)) {
+        if (Objects.nonNull(tmpSelectedPlaylist)) {
             try {
                 this.library.removePlaylist(tmpSelectedPlaylist);
                 this.updatePlaylistView();
@@ -345,12 +344,11 @@ public class MySpotifyController {
      */
     @FXML
     public void onButtonExport() {
-        final Playlist tmpSelectedPlaylist =
+        Playlist tmpSelectedPlaylist =
                 (Playlist) this.listViewPlaylists.getSelectionModel().getSelectedItem();
 
         try {
-            Objects.requireNonNull(tmpSelectedPlaylist);
-            tmpSelectedPlaylist.exportPlaylist();
+            Objects.requireNonNull(tmpSelectedPlaylist).exportPlaylist();
 
             String name = tmpSelectedPlaylist.getName();
             this.setOutputArea("Exported playlist '" + name + "' as '" + name + ".txt'.");
@@ -365,7 +363,7 @@ public class MySpotifyController {
      */
     @FXML
     public void onButtonAdd() {
-        if (!Objects.isNull(this.selectedPlaylist) && !Objects.isNull(this.selectedSong)) {
+        if (Objects.nonNull(this.selectedPlaylist) && Objects.nonNull(this.selectedSong)) {
             try {
                 this.selectedPlaylist.addSong(this.selectedSong);
 
@@ -381,13 +379,13 @@ public class MySpotifyController {
 
     @FXML
     public void onButtonRemove() {
-        final String text = this.labelSongs.getText();
+        String text = this.labelSongs.getText();
 
         if (!text.equals("Songs")) {
-            final Playlist playlist = (Playlist) this.library.getPlaylist().stream()
+            Playlist playlist = (Playlist) this.library.getPlaylist().stream()
                     .filter(p -> p.getName().equals(text)).findFirst().orElse(null);
 
-            final Music song = this.listViewSongs.getSelectionModel().getSelectedItem();
+            Music song = this.listViewSongs.getSelectionModel().getSelectedItem();
             playlist.removeSong(song);
             this.updateListView(playlist, listViewSongs);
 
@@ -405,10 +403,9 @@ public class MySpotifyController {
      */
     @FXML
     public void onButtonRename() {
-        final Music tmpSelectedPlaylist =
-                this.listViewPlaylists.getSelectionModel().getSelectedItem();
+        Music tmpSelectedPlaylist = this.listViewPlaylists.getSelectionModel().getSelectedItem();
 
-        if (!Objects.isNull(tmpSelectedPlaylist)) {
+        if (Objects.nonNull(tmpSelectedPlaylist)) {
             String oldName = tmpSelectedPlaylist.getName();
             String newName = this.textFieldName.getText();
 
@@ -431,10 +428,9 @@ public class MySpotifyController {
      */
     @FXML
     public void onButtonChangePicture() {
-        final Music tmpSelectedPlaylist =
-                this.listViewPlaylists.getSelectionModel().getSelectedItem();
+        Music tmpSelectedPlaylist = this.listViewPlaylists.getSelectionModel().getSelectedItem();
 
-        if (!Objects.isNull(tmpSelectedPlaylist)) {
+        if (Objects.nonNull(tmpSelectedPlaylist)) {
             String oldPicture = tmpSelectedPlaylist.getPicturePath();
             String newPicture = this.textFieldPicturePath.getText();
 
@@ -456,10 +452,10 @@ public class MySpotifyController {
      */
     @FXML
     public void onButtonCreate() {
-        final String name = this.textFieldName.getText();
+        String name = this.textFieldName.getText();
 
         try {
-            final String picturePath = this.textFieldPicturePath.getText();
+            String picturePath = this.textFieldPicturePath.getText();
 
             if (picturePath.equals("")) {
                 this.library.addPlaylist(new Playlist(name));
@@ -482,7 +478,7 @@ public class MySpotifyController {
     @FXML
     public void onButtonImport() {
         try {
-            final String name = this.textFieldName.getText();
+            String name = this.textFieldName.getText();
 
             this.library.importPlaylist(name);
             this.updatePlaylistView();
